@@ -177,8 +177,11 @@ function ToolPart(props: { part: ToolPart; message: AssistantMessage }) {
     if (props.part.state.status === "pending") {
       const pending = ToolRegistry.pending(props.part.tool)
       if (!pending) return
-      console.log(props.part.state.status, props.part.state.raw)
-      return <Dynamic component={pending} state={props.part.state} />
+      return (
+        <text>
+          <Dynamic component={pending} state={props.part.state} />
+        </text>
+      )
     }
 
     const ready = ToolRegistry.ready(props.part.tool)
@@ -308,7 +311,7 @@ ToolRegistry.register<typeof GlobTool>({
     })
     return (
       <>
-        <text fg={Theme.textMuted}>Glob {(props.input as any).pattern}</text>
+        <text fg={Theme.textMuted}>Glob {props.input.pattern}</text>
         <box>
           <text>{files()}</text>
         </box>

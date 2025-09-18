@@ -15,8 +15,7 @@ export namespace Plugin {
   const state = Instance.state(async () => {
     const client = createOpencodeClient({
       baseUrl: "http://localhost:4096",
-      // @ts-ignore
-      fetch: async (...args) => Server.App.fetch(...args),
+      fetch: async (...args) => Server.App().fetch(...args),
     })
     const config = await Config.get()
     const hooks = []
