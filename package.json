@@ -12,8 +12,8 @@
   },
   "workspaces": {
     "packages": [
-      "cloud/*",
       "packages/*",
+      "packages/console/*",
       "packages/sdk/js"
     ],
     "catalog": {
