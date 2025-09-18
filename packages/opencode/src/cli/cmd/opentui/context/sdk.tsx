@@ -8,7 +8,7 @@ function init() {
     // @ts-ignore
     fetch: async (a) => {
       // @ts-ignore
-      return Server.App.fetch(a)
+      return Server.App().fetch(a)
     },
   })
   return client
