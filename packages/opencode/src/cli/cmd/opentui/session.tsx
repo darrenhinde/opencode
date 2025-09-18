@@ -114,7 +114,6 @@ function UserMessage(props: { message: UserMessage; parts: Part[] }) {
   const sync = useSync()
   return (
     <box
-      id={text()?.id}
       border={["left"]}
       paddingTop={1}
       paddingBottom={1}
@@ -353,7 +352,7 @@ ToolRegistry.register<typeof ListTool>({
 ToolRegistry.register<typeof TaskTool>({
   name: "task",
   pending: () => "Delegating...",
-  ready(props) {
+  ready() {
     return (
       <>
         <text fg={Theme.textMuted}>Task</text>
