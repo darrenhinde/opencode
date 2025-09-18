@@ -32,6 +32,8 @@ import type {
   SessionUpdateResponses,
   SessionChildrenData,
   SessionChildrenResponses,
+  SessionTodoData,
+  SessionTodoResponses,
   SessionInitData,
   SessionInitResponses,
   SessionAbortData,
@@ -288,6 +290,16 @@ class Session extends _HeyApiClient {
   public children<ThrowOnError extends boolean = false>(options: Options<SessionChildrenData, ThrowOnError>) {
     return (options.client ?? this._client).get<SessionChildrenResponses, unknown, ThrowOnError>({
       url: "/session/{id}/children",
+      ...options,
+    })
+  }
+
+  /**
+   * Get the todo list for a session
+   */
+  public todo<ThrowOnError extends boolean = false>(options: Options<SessionTodoData, ThrowOnError>) {
+    return (options.client ?? this._client).get<SessionTodoResponses, unknown, ThrowOnError>({
+      url: "/session/{id}/todo",
       ...options,
     })
   }
@@ -664,7 +676,7 @@ class Event extends _HeyApiClient {
    * Get events
    */
   public subscribe<ThrowOnError extends boolean = false>(options?: Options<EventSubscribeData, ThrowOnError>) {
-    return (options?.client ?? this._client).get.sse<EventSubscribeResponses, unknown, ThrowOnError>({
+    return (options?.client ?? this._client).sse.get<EventSubscribeResponses, unknown, ThrowOnError>({
       url: "/event",
       ...options,
     })
