@@ -356,10 +356,7 @@ ToolRegistry.register<typeof TaskTool>({
   ready(props) {
     return (
       <>
-        <text fg={Theme.textMuted}>Task {(props.input as any).description}</text>
-        <box>
-          <text>{props.output?.trim()}</text>
-        </box>
+        <text fg={Theme.textMuted}>Task</text>
       </>
     )
   },

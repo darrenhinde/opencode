@@ -41,7 +41,16 @@ function init() {
           break
         case "session.updated":
           const result = Binary.search(store.session, event.properties.info.id, (s) => s.id)
-          setStore("session", result.index, reconcile(event.properties.info))
+          if (result.found) {
+            setStore("session", result.index, reconcile(event.properties.info))
+            break
+          }
+          setStore(
+            "session",
+            produce((draft) => {
+              draft.splice(result.index, 0, event.properties.info)
+            }),
+          )
           break
         case "message.updated": {
           const messages = store.message[event.properties.info.sessionID]
